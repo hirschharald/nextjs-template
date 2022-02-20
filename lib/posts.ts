@@ -29,6 +29,10 @@ export function getSortedPostsData(useStatic: Boolean) {
       })
     : [{id:1,date:'2022-12-21',title:'titel'}]
 
+  //   fetch('https://jsonplaceholder.typicode.com/todos/1')
+  // .then(response => response.json())
+  // .then(json => console.log(json))
+
   // Sort posts by date
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {
