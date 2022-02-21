@@ -64,8 +64,13 @@ export default function Layout({
               </Link>
             </li>
             <li>
+              <Link href="/todos">
+                <a>ToDo</a>
+              </Link>
+            </li>
+            <li>
               <Link href="/help">
-                <a>Hilfe</a>
+                <a>Help</a>
               </Link>
             </li>
           </ul>

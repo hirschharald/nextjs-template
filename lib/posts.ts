@@ -11,8 +11,8 @@ export async function getSortedPostsData(useStatic: Boolean) {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
 
-  const allPostsData = await (useStatic)
-    ? fileNames.map((fileName) => {
+  const allPostsData = 
+     fileNames.map((fileName) => {
         // Remove ".md" from file name to get id
         const id = fileName.replace(/\.md$/, "");
 
@@ -29,20 +29,21 @@ export async function getSortedPostsData(useStatic: Boolean) {
           ...(matterResult.data as { date: string; title: string }),
         };
       })
-    : await fetchData()
-      
-
-    return allPostsData
-  // return allPostsData.sort((a, b) => {
-  //   if (a.date < b.date) {
-  //     return 1;
-  //   } else {
-  //     return -1;
-  //   }
-  // });
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 }
 export async function fetchData(): Promise<any> {
-  let response = await fetch("https://jsonplaceholder.typicode.com/todos");
+  let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  if (!response) {
+    return {
+      notFound: true,
+    }
+  }
   return await response.json();
 }
 
